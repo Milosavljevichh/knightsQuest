@@ -1,5 +1,7 @@
 
-
+import findShortestPath from "./findShortestPath";
+import findMoves from "./findMoves";
+import printShortestPath from "./printShortestPath";
 //this is the factory for the node which will be every move that is possible from the current
 function Node(value, nextNode) {
     return {
@@ -9,8 +11,7 @@ function Node(value, nextNode) {
 };
 
 
-function knightMoves(start, end) {
-    console.log('dudlaj kurac')
+export default function knightMoves(start, end) {
     let head;
     let adjacencyList = [];
     let depthLevel = 0;
@@ -24,10 +25,9 @@ function knightMoves(start, end) {
     //we will repeat this until we find the end position
     while (!endFound) {
         start = adjacencyList[depthLevel].value;
-        x = start[0];
-        y = start[1];
+        let x = start[0];
+        let y = start[1];
         //we find the possible moves from the current position
-        console.log('dudlaj kurac')
         let availableMoves = findMoves(x, y);
         
         //creating a linked list out of available moves
@@ -63,6 +63,6 @@ function knightMoves(start, end) {
     };
 
     let parentMove = end
-    findShortestPath(initStart, parentMove, adjacencyList, head, end)
-    
+    let printInfo = findShortestPath(initStart, parentMove, adjacencyList, head, end)
+    printShortestPath(...printInfo)
 };
