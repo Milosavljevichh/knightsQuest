@@ -12,6 +12,13 @@ function Node(value, nextNode) {
 
 
 export default function knightMoves(start, end) {
+    if (!start) {
+         throw new Error("Start not defined!");
+         return
+    } else if (!end) {
+         throw new Error("End not defined!");
+         return
+    }
     let head;
     let adjacencyList = [];
     let depthLevel = 0;
@@ -64,5 +71,5 @@ export default function knightMoves(start, end) {
 
     let parentMove = end
     let printInfo = findShortestPath(initStart, parentMove, adjacencyList, head, end)
-    printShortestPath(...printInfo)
+    return [...printInfo]
 };
