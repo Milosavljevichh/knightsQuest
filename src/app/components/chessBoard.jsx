@@ -59,13 +59,15 @@ export default function ChessBoard() {
         setIsFindingPath(true)
         const [moves, path, end] = knightMoves(startingTile, endingTile)
         printShortestPath(moves, path, end)
-        resetBoardState()
+        console.log(path)
+        renderPath(path, end)
+        // resetBoardState()
     }
 
     function resetBoardState() {
         setStartingTile(null)
         setEndingTile(null)
-        setIsFindingPath(null)
+        setIsFindingPath(false)
         let newChessboard = [
             [0, 0, 0, 0, 0, 0, 0, 0], //0
             [0, 0, 0, 0, 0, 0, 0, 0], //1
@@ -79,6 +81,58 @@ export default function ChessBoard() {
         setChessboard(newChessboard)
     }
 
+    function renderPath(path, end){
+        let delay = 0
+        path.slice().reverse().forEach((coordinates, index)=>{
+            // if (index === path.length - 1) return;
+            setTimeout(()=>{
+                let newBoard = [...chessboard]
+                newBoard[coordinates[0]][coordinates[1]] = 2
+                setChessboard(newBoard)
+            },delay)
+            delay += 1000
+        })
+        // newBoard[end[0]][end[1]] = 2
+    }
+
+    function renderTiles(row, isLastRow, index) {
+        return (row.map((tile, tileIndex) => {
+            switch (tile) {
+                case 0:
+                    return (<div
+                        key={'tile' + tileIndex}
+                        className={
+                            "w-[64px] h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-black" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-black") + " hover:cursor-pointer relative"
+                        }
+                        onClick={(e) => { setStartAndEnd(index, tileIndex) }}
+                    >
+                        {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
+                    </div>)
+                case 1:
+                 return (<div
+                    key={'tile' + tileIndex}
+                    className={
+                        " w-[64px] h-[64px] bg-[#97B067] border-4 border-solid border-[#437057] hover:cursor-pointer relative"
+                    }
+                    onClick={(e) => { setStartAndEnd(index, tileIndex) }}
+                >
+                    {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
+                    <KnightPiece />
+                </div>)
+                case 2:
+                    return (<div
+                        key={'tile' + tileIndex}
+                        className={
+                            "w-[64px] h-[64px] hover:cursor-pointer relative bg-[#E14434] border-4 border-solid border-[#B22222]"
+                        }
+                        onClick={(e) => { setStartAndEnd(index, tileIndex) }}
+                    >
+                        {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
+                    </div>)
+            }
+        }))
+    }
+
     return (
         <section id="chessboard" className="w-fit rounded-3xl flex flex-col-reverse">
             {
@@ -87,31 +141,7 @@ export default function ChessBoard() {
                     return (
                         <div key={'row' + index} className="flex w-fit relative">
                             <span className="absolute top-1/2 -translate-y-1/2 -left-[25px] text-white">{index + 1}</span>
-                            {
-                                row.map((tile, tileIndex) => (
-                                    tile === 0 ? //determines if its the active tile
-                                        <div
-                                            key={'tile' + tileIndex}
-                                            className={
-                                                "w-[64px] h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-black" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-black") + " hover:cursor-pointer relative"
-                                            }
-                                            onClick={(e) => { setStartAndEnd(index, tileIndex) }}
-                                        >
-                                            {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
-                                        </div>
-                                        :
-                                        <div
-                                        key={'tile' + tileIndex}
-                                        className={
-                                            "w-[64px] h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-black" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-black") + " hover:cursor-pointer relative"
-                                        }
-                                        onClick={(e) => { setStartAndEnd(index, tileIndex) }}
-                                        >
-                                            {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
-                                            <KnightPiece />
-                                        </div>
-                                ))
-                            }
+                            {renderTiles(row, isLastRow, index)}
                         </div>
                     )
                 })

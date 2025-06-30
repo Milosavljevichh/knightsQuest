@@ -1,6 +1,7 @@
 
 export default function findShortestPath(start,end,adjacencyList, head, printend){
     let movesMade = 0;
+    let lastPoint = end
     //we'll find the shortest path starting from the end position (last move we've made)
     let path = [];
     //we repeat this until our last move made is the same as the starting position
@@ -20,5 +21,6 @@ export default function findShortestPath(start,end,adjacencyList, head, printend
             };
         }
     }
+    path.unshift(lastPoint)
     return [movesMade, path, printend]
 }
