@@ -87,7 +87,11 @@ export default function ChessBoard() {
             // if (index === path.length - 1) return;
             setTimeout(()=>{
                 let newBoard = [...chessboard]
-                newBoard[coordinates[0]][coordinates[1]] = 2
+                if (index >= 1) {
+                    newBoard[path[path.length-index][0]][path[path.length-index][1]] = 2
+                }
+                console.log(index)
+                newBoard[coordinates[0]][coordinates[1]] = 1
                 setChessboard(newBoard)
             },delay)
             delay += 1000
