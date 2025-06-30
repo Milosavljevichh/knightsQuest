@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import knightMoves from "../logic/knightMoves";
 import printShortestPath from "../logic/printShortestPath";
 
-export default function ChessBoard() {
+export default function ChessBoard({updateParentStates}) {
 
-    const [activeTile, setActiveTile] = useState(null)
+    // const [activeTile, setActiveTile] = useState(null)
     const [chessboard, setChessboard] = useState([
         [0, 0, 0, 0, 0, 0, 0, 0], //0
         [0, 0, 0, 0, 0, 0, 0, 0], //1
@@ -58,8 +58,9 @@ export default function ChessBoard() {
     function findPath() {
         setIsFindingPath(true)
         const [moves, path, end] = knightMoves(startingTile, endingTile)
-        printShortestPath(moves, path, end)
-        console.log(path)
+        // printShortestPath(moves, path, end)
+        // console.log(path)
+        updateParentStates(moves,path)
         renderPath(path, end)
         // resetBoardState()
     }
