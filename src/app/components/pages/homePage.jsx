@@ -1,6 +1,7 @@
 'use client'
 import TextContent from "../textContent"
 import ChessBoard from "../chessBoard"
+import ActionButtons from "../actionButtons"
 import { useState } from "react"
 
 export default function HomePage() {
@@ -12,10 +13,17 @@ export default function HomePage() {
     setPath(path)
   }
 
+  function resetBoard(func){
+    
+  }
+
     return (
-        <main className="flex items-center justify-between px-56 py-26 w-[100vw]">
+        <main className="flex items-center justify-between gap-16 px-56 py-26 w-[100vw]">
+          <section>
             <TextContent movesMade={movesMade} path={path} />
-            <ChessBoard updateParentStates={updateStates} />
+            <ActionButtons />
+          </section>
+            <ChessBoard updateParentStates={updateStates} triggerFunc={resetBoard} />
         </main>
     )
 }

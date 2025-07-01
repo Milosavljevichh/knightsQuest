@@ -111,7 +111,7 @@ export default function ChessBoard({updateParentStates}) {
                         }
                         onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                     >
-                        {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
+                        {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[35px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
                     </div>)
                 case 1:
                  return (<div
@@ -121,7 +121,7 @@ export default function ChessBoard({updateParentStates}) {
                     }
                     onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                 >
-                    {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
+                    {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[35px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
                     <KnightPiece />
                 </div>)
                 case 2:
@@ -132,14 +132,14 @@ export default function ChessBoard({updateParentStates}) {
                         }
                         onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                     >
-                        {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[25px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
+                        {isLastRow && <span className="absolute left-1/2 -translate-x-1/2 -bottom-[35px] text-white">{String.fromCharCode(97 + tileIndex)}</span>}
                     </div>)
             }
         }))
     }
 
     return (
-        <section id="chessboard" className="w-fit rounded-3xl flex flex-col-reverse">
+        <section id="chessboard" className="w-fit flex flex-col-reverse border-4 border-solid border-[#EAD8A4]">
             {
                 chessboard.map((row, index) => {
                     let isLastRow = index === 0
