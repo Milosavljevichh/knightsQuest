@@ -111,7 +111,7 @@ export default function ChessBoard({updateParentStates}) {
                     return (<div
                         key={'tile' + tileIndex}
                         className={
-                            "w-[64px] h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-black" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-black") + " hover:cursor-pointer relative"
+                            "w-[64px] h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-transparenr" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-transparenr") + " hover:cursor-pointer relative"
                         }
                         onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                     >
@@ -143,7 +143,7 @@ export default function ChessBoard({updateParentStates}) {
     }
 
     return (
-        <section id="chessboard" className="w-fit flex flex-col-reverse border-4 border-solid border-[#EAD8A4]">
+        <section id="chessboard" className="w-fit flex flex-col-reverse border-1 border-solid border-[#fff]">
             {
                 chessboard.map((row, index) => {
                     let isLastRow = index === 0
