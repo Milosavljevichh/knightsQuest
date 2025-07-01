@@ -35,9 +35,9 @@ export default function ReturnInfo({ movesMade = '#', path = [] }) {
                         No path yet! Follow the instructions to create one. 
                     </p>
             }
-            <button className="rounded-full bg-blue-400 py-1 px-6 mt-5">
+            {/* <button className="rounded-full bg-blue-400 py-1 px-6 mt-5">
                 Reset
-            </button>
+            </button> */}
         </div>
     )
 }

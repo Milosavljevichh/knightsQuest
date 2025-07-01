@@ -20,6 +20,7 @@ export default function ChessBoard({updateParentStates}) {
     const [startingTile, setStartingTile] = useState(null)
     const [endingTile, setEndingTile] = useState(null)
     const [isFindingPath, setIsFindingPath] = useState(false)
+    const [hasFoundPath, setHasFoundPath] = useState(false)
 
     useEffect(() => {
         if (startingTile && endingTile && !isFindingPath) {
@@ -43,7 +44,8 @@ export default function ChessBoard({updateParentStates}) {
     }
 
     function setStartAndEnd(x, y) {
-        if (isFindingPath) { return }
+        if (hasFoundPath) {resetBoardState()}
+        if (startingTile && endingTile) { return }
 
         if (!startingTile) {
             let tile = [x, y]
@@ -58,17 +60,15 @@ export default function ChessBoard({updateParentStates}) {
     function findPath() {
         setIsFindingPath(true)
         const [moves, path, end] = knightMoves(startingTile, endingTile)
-        // printShortestPath(moves, path, end)
-        // console.log(path)
         updateParentStates(moves,path)
         renderPath(path, end)
-        // resetBoardState()
     }
 
     function resetBoardState() {
         setStartingTile(null)
         setEndingTile(null)
         setIsFindingPath(false)
+        setHasFoundPath(false)
         let newChessboard = [
             [0, 0, 0, 0, 0, 0, 0, 0], //0
             [0, 0, 0, 0, 0, 0, 0, 0], //1
@@ -91,9 +91,13 @@ export default function ChessBoard({updateParentStates}) {
                 if (index >= 1) {
                     newBoard[path[path.length-index][0]][path[path.length-index][1]] = 2
                 }
-                console.log(index)
                 newBoard[coordinates[0]][coordinates[1]] = 1
                 setChessboard(newBoard)
+                if (index === path.length - 1) {
+                    setHasFoundPath(true)
+                    setStartingTile(null)
+                    setEndingTile(null)
+                }
             },delay)
             delay += 1000
         })
