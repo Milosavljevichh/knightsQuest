@@ -13,17 +13,13 @@ export default function HomePage() {
     setPath(path)
   }
 
-  function resetBoard(func){
-    
-  }
-
     return (
-        <main className="flex items-center justify-between gap-16 px-56 py-26 w-[100vw]">
-          <section>
+        <main className="flex items-center justify-between gap-16 max-w-6xl py-26 w-[100vw] m-auto">
+          <section className="w-fit">
             <TextContent movesMade={movesMade} path={path} />
             <ActionButtons />
           </section>
-            <ChessBoard updateParentStates={updateStates} triggerFunc={resetBoard} />
+            <ChessBoard updateParentStates={updateStates} />
         </main>
     )
 }
