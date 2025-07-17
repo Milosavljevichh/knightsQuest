@@ -14,12 +14,14 @@ export default function HomePage() {
   }
 
     return (
-        <main className="flex items-center justify-between gap-16 max-w-6xl py-26 w-[100vw] m-auto">
-          <section className="w-fit">
+        <main className="flex flex-col lg:flex-row items-center justify-between lg:justify-center gap-8 max-w-6xl py-26 px-10 w-[100vw] m-auto ">
+          <section className="w-fit p-6 lg:max-w-[524px]">
             <TextContent movesMade={movesMade} path={path} />
             <ActionButtons />
           </section>
+          <section className="w-full p-6 max-w-[524px]">
             <ChessBoard updateParentStates={updateStates} />
+          </section>
         </main>
     )
 }

@@ -111,7 +111,7 @@ export default function ChessBoard({updateParentStates}) {
                     return (<div
                         key={'tile' + tileIndex}
                         className={
-                            "w-[64px] h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-transparenr" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-transparenr") + " hover:cursor-pointer relative"
+                            "w-10 h-10 md:w-15 md:h-15 lg:w-[64px] lg:h-[64px] " + (index % 2 !== 0 ? tileIndex % 2 !== 0 ? "bg-transparenr" : "bg-amber-50" : tileIndex % 2 !== 0 ? "bg-amber-50" : "bg-transparenr") + " hover:cursor-pointer relative"
                         }
                         onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                     >
@@ -121,7 +121,7 @@ export default function ChessBoard({updateParentStates}) {
                  return (<div
                     key={'tile' + tileIndex}
                     className={
-                        " w-[64px] h-[64px] bg-[#97B067] border-4 border-solid border-[#437057] hover:cursor-pointer relative"
+                        " w-10 h-10 md:w-15 md:h-15 lg:w-[64px] lg:h-[64px] bg-[#97B067] border-4 border-solid border-[#437057] hover:cursor-pointer relative"
                     }
                     onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                 >
@@ -132,7 +132,7 @@ export default function ChessBoard({updateParentStates}) {
                     return (<div
                         key={'tile' + tileIndex}
                         className={
-                            "w-[64px] h-[64px] hover:cursor-pointer relative bg-[#E14434] border-4 border-solid border-[#B22222]"
+                            "w-10 h-10 md:w-15 md:h-15 lg:w-[64px] lg:h-[64px] hover:cursor-pointer relative bg-[#E14434] border-4 border-solid border-[#B22222]"
                         }
                         onClick={(e) => { setStartAndEnd(index, tileIndex) }}
                     >
@@ -143,7 +143,7 @@ export default function ChessBoard({updateParentStates}) {
     }
 
     return (
-        <section id="chessboard" className="w-fit flex flex-col-reverse border-1 border-solid border-[#fff]">
+        <article id="chessboard" className="w-fit flex flex-col-reverse border-1 border-solid border-[#fff] mx-auto">
             {
                 chessboard.map((row, index) => {
                     let isLastRow = index === 0
@@ -155,6 +155,6 @@ export default function ChessBoard({updateParentStates}) {
                     )
                 })
             }
-        </section>
+        </article>
     )
 }
